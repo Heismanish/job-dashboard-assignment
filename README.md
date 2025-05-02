@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Job Portal — Next.js + TypeScript
 
-## Getting Started
+A minimal job application platform built with Next.js App Router, Tailwind CSS, TypeScript, Formik/Yup, and localStorage.
 
-First, run the development server:
+### Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. Next.js (App Router) – SSR/SSG-ready routing and pages
+
+2. TypeScript – Type-safe components, props, and logic
+
+3. Tailwind CSS – Utility-first, responsive UI styling
+
+4. Formik + Yup – Form state and validation
+
+5. Context API – (Optional) for global state sharing
+
+6. LocalStorage – Temporary persistence for job applications
+
+7. JSON Mock Data – Simulates job listings backend
+
+# Routes Overview
+
+### Home Page (`/`)
+
+- Renders a grid of job cards from jobs.json
+
+- Each card has a “View Details” button linking to `/job/[id]`
+
+### Job Detail Page (`/job/[id]`)
+
+- Dynamically fetches job data by ID from jobs.json
+
+- Displays job description, responsibilities, tech stack, etc.
+
+- Includes a full-featured Apply Form (Formik + Yup)
+
+- On submission, data is saved to localStorage
+
+### Applied Jobs Page (`/jobs-applied`)
+
+- Reads applied jobs from localStorage
+
+- Lists each job the user applied for
+
+- Shows name, email, resume link, and cover letter
+
+## Application Flow
+
+User visits home page → Sees job listings
+
+Clicks on "View Details" → Navigates to job detail
+
+Fills the application form → On submit, data saved to localStorage
+
+Visits /jobs-applied → Sees previously applied jobs
+
+## Features Implemented
+
+- ✅ Next.js App Router
+- ✅ TypeScript
+- ✅ Tailwind CSS UI
+- ✅ Dynamic Routing (/job/[id])
+- ✅ Formik + Yup for validation
+- ✅ LocalStorage-based application tracking
+- ✅ Applied Jobs dashboard
+- ✅ Dark mode support using dark: Tailwind utility
+
+## Folder structure
+
+```sh
+/app
+  /job
+    [id]/page.tsx      // Job detail + form
+  /jobs-applied
+    page.tsx           // View applied jobs
+  layout.tsx           // Shared layout (includes Navbar)
+  page.tsx             // Home page (job grid)
+
+components/
+  Navbar.tsx
+  JobCard.tsx
+  ApplyForm.tsx
+
+data/
+  jobs.json            // Mock job data
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Run locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+git clone <your-repo-url>
+cd job-portal-next
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Visit: http://localhost:3000
